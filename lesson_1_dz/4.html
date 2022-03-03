@@ -29,11 +29,12 @@
 -->
   <script>
     "use strict";
-    const userNumber = +prompt('Enter the positive number')
-    const numberHundreds = parseInt(userNumber / 100) % 10
-    const numberTens = parseInt(userNumber / 10) % 10
-    const numberUnits = userNumber % 10
-    alert(`In the number ${userNumber} number of hundreds: ${numberHundreds}, tens: ${numberTens}, units: ${numberUnits}`)
+
+    const userNumber = +prompt('Enter the positive number');
+    const numberHundreds = parseInt(userNumber / 100) % 10;
+    const numberTens = parseInt(userNumber / 10) % 10;
+    const numberUnits = userNumber % 10;
+    alert(`In the number ${userNumber} number of hundreds: ${numberHundreds}, tens: ${numberTens}, units: ${numberUnits}`);
 
   </script>
 </body>
