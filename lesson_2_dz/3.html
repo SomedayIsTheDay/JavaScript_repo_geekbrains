@@ -25,14 +25,12 @@
 
     const a = +prompt('Enter the first number');
     const b = +prompt('Enter the second number');
-    if (a >= 0 && b >= 0) {
+    if (a > 0 && b > 0) {
       console.log(a - b);
     } else if (a < 0 && b < 0) {
       console.log(a * b);
-    } else if (a < 0 && b >= 0 || a >= 0 && b < 0) {
+    } else if (a < 0 && b > 0 || a > 0 && b < 0) {
       console.log(a + b);
-    } else {
-      console.log('Nothing');
     }
   </script>
 </body>

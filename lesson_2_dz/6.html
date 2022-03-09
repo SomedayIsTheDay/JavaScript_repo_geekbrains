@@ -34,7 +34,7 @@ console.log(declinationOfNumber(5, "стул", "стула", "стульев"));
       const count = +prompt('Enter the count');
       if (count % 10 === 1 && count % 100 !== 11) {
         return [firstDeclension, count];
-      } else if (1 < count % 10 < 5 && !(11 < count % 100 < 15)) {
+      } else if (count % 10 > 1 && count % 10 < 5 && !(11 < count % 100 < 15)) {
         return [secondDeclension, count];
       } else {
         return [thirdDeclension, count];
