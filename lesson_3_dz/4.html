@@ -47,20 +47,18 @@
     ];
 
     // #1
-    let productsWithPhotos = products.filter(function (product) {
-      if (product.hasOwnProperty('photos')) {
-        return product.photos.length > 0;
-      }
+    const productsWithPhotos = products.filter(product => {
+      return product.hasOwnProperty('photos') && product.photos.length > 0;
     });
 
     console.log(productsWithPhotos);
 
     // #2
-    let sortedProducts = products.sort(function (productOne, productTwo) {
+    products.sort(function (productOne, productTwo) {
       return productOne.price - productTwo.price;
     });
 
-    console.log(sortedProducts);
+    console.log(products);
   </script>
 </body>
 
