@@ -40,19 +40,24 @@
      * @returns {object} object that contains units, dozens and hundreds of the given number
      */
     function getDigitsOfNumber(number) {
-      if (number >= 0 && number < 1000) {
+      if (!Number.isInteger(number)) {
+        console.error("You must enter a number");
+        return {};
+      } else if (number >= 0 && number < 1000) {
         return {
           'hundreds': Math.trunc((number / 100) % 10),
           'tens': Math.trunc((number / 10)) % 10,
           'units': number % 10
         };
+      } else {
+        console.error('You must enter a number in the range from 0 to 1000');
+        return {};
       }
-      console.error('You must enter a number in the range from 0 to 1000');
-      return {};
     }
 
     console.log(getDigitsOfNumber(523));
     console.log(getDigitsOfNumber(-1));
+    console.log(getDigitsOfNumber('asd'));
 
   </script>
 </body>

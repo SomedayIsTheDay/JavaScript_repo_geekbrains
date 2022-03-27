@@ -60,7 +60,8 @@
     }
 
     PostES5.prototype.edit = function (newText) {
-      return this.text = newText;
+      this.text = newText;
+      this.datetime = new Date();
     };
 
     const postES5 = new PostES5('qwe', 'qwe');
@@ -79,6 +80,7 @@
 
     AttachedPostES5.prototype.makeTextHighlighted = function () {
       this.highlighted = true;
+      this.datetime = new Date();
     };
 
     const attachedPostES5 = new AttachedPostES5('yep', 'nope');
@@ -96,7 +98,8 @@
       }
 
       edit(newText) {
-        return this.text = newText;
+        this.text = newText;
+        this.datetime = new Date();
       }
     }
 
@@ -107,13 +110,11 @@
 
 
     class AttachedPostES6 extends PostES6 {
-      constructor(authorName, text) {
-        super(authorName, text);
-        this.highlighted = false;
-      }
+      highlighted = false
 
       makeTextHighlighted() {
-        return this.highlighted = true;
+        this.highlighted = true;
+        this.datetime = new Date();
       }
     }
 
