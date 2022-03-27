@@ -91,13 +91,16 @@
         console.log(`Class "super_element" doesn't present in the element "${evTrgtTag.toLowerCase()}"`);
       }
 
+      // or
+      // const containStr = event.target.classList.contains('super_element') ? 'present' : 'doesn't present';
+      // console.log(`Class "super_element" ${containStr} in the element "${evTrgtTag.toLowerCase()}"`);
     });
 
     /*
     4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
     "Вы навели на textarea."
      */
-    document.querySelector('textarea').addEventListener('mouseover', event => {
+    document.querySelector('textarea').addEventListener('mouseover', () => {
       console.log('You have moused over this element');
     });
 
