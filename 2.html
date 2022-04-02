@@ -68,9 +68,10 @@
     должно моментально отображаться в span. То есть при печати в input'е тег span
     также должен меняться.
     */
+    const spanEl = document.querySelector('span');
     const firstinputEl = document.querySelector('#from');
     firstinputEl.addEventListener('input', () => {
-      document.querySelector('span').textContent = firstinputEl.value;
+      spanEl.textContent = firstinputEl.value;
     });
 
     /*
@@ -108,7 +109,7 @@
     });
 
     for (let el of formControlElems) {
-      el.addEventListener('change', () => {
+      el.addEventListener('input', () => {
         if (el.value === '') {
           el.classList.add('error');
         } else {
@@ -117,6 +118,19 @@
       });
     }
 
+    // or delegation instead of cycle:
+    /*
+    formEl.addEventListener('input', event => {
+      if (!event.target.classList.contains('form-control')) {
+        return;
+      }
+      if (event.target.value === '') {
+        event.target.classList.add('error');
+      } else {
+        event.target.classList.remove('error');
+      }
+    });
+    */
   </script>
 </body>
 
