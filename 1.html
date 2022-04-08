@@ -60,7 +60,7 @@
     const divText = document.querySelector('.text');
     const divLinks = document.querySelector('.container');
     divLinks.addEventListener('click', event => {
-      if (event.target.tagName !== 'A') {
+      if (!event.target.classList.contains('nav-link')) {
         return;
       }
       divLinks.querySelector('.active').classList.remove('active');
@@ -80,9 +80,11 @@
     шрифт у текста, никакого резкого увеличения шрифта не должно быть при
     перетаскивании ползунка.
      */
-    const inputEl = document.querySelector('input');
+    const inputEl = document.querySelector('input[type]');
+    const inputDiv = document.querySelector('#inputDiv');
+    inputEl.value = Number.parseInt(getComputedStyle(inputDiv).fontSize);
     inputEl.addEventListener('input', () => {
-      document.querySelector('#inputDiv').style.fontSize = `${inputEl.value}px`;
+      inputDiv.style.fontSize = `${inputEl.value}px`;
     });
 
   </script>

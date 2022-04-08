@@ -27,10 +27,9 @@
      * параметр "n"
      */
     function descendingOrder(n) {
-      n = String(n).split('').sort(function compareNumbers(a, b) {
-        return b - a;
-      });
-      return +n.join('');
+      return +n.toString().split('').sort((a, b) => b - a).join('');
+      // or:
+      // return +Array.from(n.toString(), Number).sort((a, b) => b - a).join('');
     }
 
     console.log(descendingOrder(42145)); // 54421
