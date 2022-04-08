@@ -3,59 +3,54 @@
 const cart = {};
 const cartIcon = document.querySelector('.cartIconWrap');
 const cartPanel = document.querySelector('.shoppingCart');
-const featuredItems = document.querySelector('.featuredItems');
-const cartNumber = cartIcon.querySelector('.cartNumber');
+const cartCount = cartIcon.querySelector('.cartCount');
 const cartTotalValue = cartPanel.querySelector('.cartTotalValue');
-const cartProducts = cartPanel.querySelectorAll
-    ('.cartName, .cartAmount, .cartPrice, .cartProductTotal');
-
-
-featuredItems.addEventListener('click', event => {
-    if (event.target.tagName !== 'BUTTON') {
-        return;
-    }
-    const item = event.target.parentNode.parentNode.parentNode.dataset;
-    addToCart(item);
-});
-
-
-function addToCart(obj) {
-    cartNumber.textContent = +cartNumber.textContent + 1;
-
-    if (Object.hasOwn(cart, obj.id)) {
-        cart[obj.id].amount += 1;
-        cart[obj.id].total += +obj.price;
-
-        cartPanel.querySelector(`#${cart[obj.id].name}-amount`)
-            .textContent = cart[obj.id].amount;
-
-        cartPanel.querySelector(`#${cart[obj.id].name}-total`)
-            .textContent = cart[obj.id].total;
-
-    } else {
-        cart[obj.id] = {
-            'name': obj.name, 'amount': 1,
-            'price': obj.price, 'total': +obj.price
-        };
-
-        cartProducts[0].insertAdjacentHTML('beforeend',
-            `<div>${cart[obj.id].name}</div>`);
-
-        cartProducts[1].insertAdjacentHTML('beforeend',
-            `<div id="${cart[obj.id].name}-amount">${cart[obj.id].amount}</div>`);
-
-        cartProducts[2].insertAdjacentHTML('beforeend',
-            `<div>${cart[obj.id].price}</div>`);
-
-        cartProducts[3].insertAdjacentHTML('beforeend',
-            `<div id="${cart[obj.id].name}-total">${cart[obj.id].total}</div>`);
-    }
-
-    cartTotalValue.textContent = +cartTotalValue.textContent + +obj.price;
-
-}
 
 cartIcon.addEventListener('click', () => {
     cartPanel.classList.toggle('hidden');
 });
 
+document.querySelector('.featuredItems'); addEventListener('click', event => {
+    if (!event.target.closest('.addToCart')) {
+        return;
+    }
+    const item = event.target.closest('.featuredItem').dataset;
+    const id = +item.id;
+    const name = item.name;
+    const price = +item.price;
+
+    addToCart(id, name, price);
+});
+
+function addToCart(id, name, price) {
+    cartCount.textContent = +cartCount.textContent + 1;
+    cartTotalValue.textContent = +cartTotalValue.textContent + price;
+
+    if (id in cart) {
+        cart[id].amount += 1;
+        cart[id].total += price;
+
+        cartPanel.querySelector(`#${cart[id].name}-amount`)
+            .textContent = cart[id].amount;
+
+        cartPanel.querySelector(`#${cart[id].name}-total`)
+            .textContent = cart[id].total;
+    } else {
+        cart[id] = { name, price, amount: 1, total: price };
+
+        const cartRow = `
+          <div class="cartRow">
+            <div>${cart[id].name}</div>
+            <div>
+              <span id="${cart[id].name}-amount">${cart[id].amount}</span>pcs.
+            </div>
+            <div>$${cart[id].price}</div>
+            <div>
+              $<span id="${cart[id].name}-total">${cart[id].price}</span>
+            </div>
+          </div>
+          `;
+
+        cartTotalValue.parentNode.insertAdjacentHTML("beforebegin", cartRow);
+    }
+}
